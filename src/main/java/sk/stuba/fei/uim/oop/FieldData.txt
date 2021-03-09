@@ -1,40 +1,40 @@
-FreeParking 0 parking 0 0 P 0
-Strand 220 blue 0 1 S 0
-Lucky 0 lucky 0 2 ? 0
-FleetStreet 220 blue 0 3 S 0
-TrafalgarSquare 240 blue 0 4 S 0
-FenchruchStation 400 trains 0 5 T 0
-LeicesterSquare 260 brown 0 6 B 0
-CoventryStreet 260 brown 0 7 B 0
-WaterSupplyCompany 150 utility 0 8 U 0
-Piccadilly 280 brown 0 9 B 0
-GoToJail 0 jail 0 10 J 0
-RegentStreet 300 orange 1 10 O 0
-OxfordStreet 300 orange 2 10 O 0
-Bank 0 bank 3 10 $ 0
-BondStreet 400 orange 4 10 O 0
-LiverpoolStation 200 trains 5 10 T 0
-Lucky 0 lucky 6 10 ? 0
-ParkLine 350 coral 7 10 C 0
-SuperTaxPay 100 Pay 8 10 € 0
-MayFair 400 coral 9 10 C 0
-Start 0 Start 10 10 ← 0
-OldKentRoad 60 purple 10 9 P 0
-Bank 0 bank 10 8 $ 0
-WhiteChapelRoad 60 purple 10 7 P 0
-IncomeTaxPay 200 Pay 10 6 € 0
-KingCrossStation 200 trains 10 5 T 0
-TheAngelIslington 100 green 10 4 G 0
-Lucky 0 lucky 10 3 ? 0
-EustonRoad 100 green 10 2 G 0
-PentonevilleRoad 120 green 10 1 G 0
-Jail 0 jail 10 0 J 0
-PallMall 140 orchid 9 0 F 0
-PowerSupplyCompany 150 utility 8 0 U 0
-WhiteHall 150 purple 7 0 F 0
-NorthHumberLandAvenue 160 purple 6 0 F 0
-MarylbornStation 200 train 5 0 T 0
-BowStreet 180 yellow 4 0 Y 0
-Bank 0 bank 3 0 $ 0
-MarlboroughtStreet 400 yellow 2 0 Y 0
-VineStreet 200 yellow 1 0 Y 0
+0 FreeParking 0 0 parking 0 0 P 0
+1 Strand 220 90 blue 0 1 S 0
+2 Lucky 0 0 lucky 0 2 ? 0
+3 FleetStreet 220 90 blue 0 3 S 0
+4 TrafalgarSquare 240 100 blue 0 4 S 0
+5 FenchruchStation 400 25 trains 0 5 T 0
+6 LeicesterSquare 260 110 brown 0 6 B 0
+7 CoventryStreet 260 110 brown 0 7 B 0
+8 WaterSupplyCompany 150 0 utility 0 8 U 0
+9 Piccadilly 280 120 brown 0 9 B 0
+10 GoToJail 0 0 jail 0 10 J 0
+11 RegentStreet 300 130 orange 1 10 O 0
+12 OxfordStreet 300 130 orange 2 10 O 0
+13 Bank 0 0 bank 3 10 $ 0
+14 BondStreet 400 150 orange 4 10 O 0
+15 LiverpoolStation 200 25 trains 5 10 T 0
+16 Lucky 0 0 lucky 6 10 ? 0
+17 ParkLine 350 175 coral 7 10 C 0
+18 SuperTaxPay 0 100 Tax 8 10 € 0
+19 MayFair 400 200 coral 9 10 C 0
+20 Start 0 0 Start 10 10 ← 0
+21 OldKentRoad 60 10 purple 10 9 P 0
+22 Bank 0 0 bank 10 8 $ 0
+23 WhiteChapelRoad 60 20 purple 10 7 P 0
+24 IncomeTaxPay 0 200 Tax 10 6 € 0
+25 KingCrossStation 200 25 trains 10 5 T 0
+26 TheAngelIslington 100 30 green 10 4 G 0
+27 Lucky 0 0 lucky 10 3 ? 0
+28 EustonRoad 100 30 green 10 2 G 0
+29 PentonevilleRoad 120 40 green 10 1 G 0
+30 Jail 0 0 jail 10 0 J 0
+31 PallMall 140 50 orchid 9 0 F 0
+32 PowerSupplyCompany 150 0 utility 8 0 U 0
+33 WhiteHall 150 50 purple 7 0 F 0
+34 NorthHumberLandAvenue 160 60 purple 6 0 F 0
+35 MarylbornStation 200 25 train 5 0 T 0
+36 BowStreet 180 70 yellow 4 0 Y 0
+37 Bank 0 0 bank 3 0 $ 0
+38 MarlboroughtStreet 400 70 yellow 2 0 Y 0
+39 VineStreet 200 80 yellow 1 0 Y 0

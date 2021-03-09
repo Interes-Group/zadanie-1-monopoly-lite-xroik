@@ -61,4 +61,38 @@ public class Player extends Dice {
             }
         }
     }
+
+    public String getName() {
+        return name;
+    }
+    public int[] GetFieldLocation(int amountOfPlayers){
+        int[] location = new int[2];
+        if (position[0] > 10 + amountOfPlayers && position[1]<= 10+amountOfPlayers){ //bottom side
+            location[0] = position[0] - ID;
+            location[1] = position[1];
+        }
+        else if(position[1] < amountOfPlayers){ //left side
+            location[0] = position[0];
+            location[1] = position[1] + ID;
+        }
+        else if(position[0]<amountOfPlayers){ //top side
+            location[0] = position[0]  + ID;
+            location[1] = position[1];
+        }
+        else if(position[1]>10+amountOfPlayers){ //right side
+            location[0] = position[0];
+            location[1] = position[1] - ID;
+        }
+        return location;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+    public void IncreaseBalance(int money) {
+        this.money += money;
+    }
+    public void DecreaseBalance(int money){
+        this.money -= money;
+    }
 }
