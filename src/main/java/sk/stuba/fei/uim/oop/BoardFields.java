@@ -1,12 +1,12 @@
 package sk.stuba.fei.uim.oop;
 
 public class BoardFields {
-    String name;
-    int price;
-    String group;
-    int[] position = new int[2];
-    char shortName;
-    int ownerID;
+    private String name;
+    private int price;
+    private String group;
+    private int[] position = new int[2];
+    private char shortName;
+    private int ownerID;
     public BoardFields(){
         this.name = "";
         this.price = 0;

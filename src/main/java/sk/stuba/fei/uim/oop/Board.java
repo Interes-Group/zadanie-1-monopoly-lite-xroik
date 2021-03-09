@@ -20,7 +20,7 @@ public class Board {
                     if (i == amountOfPlayers || i == 10 + amountOfPlayers) {
                         for (BoardFields boardFields : list) {
                             if (boardFields.ComparePosition(i , j )) {
-                                board[i][j] = boardFields.shortName;
+                                board[i][j] = boardFields.getShortName();
                             }
                         }
                         // board[i][j] = '*';
@@ -28,18 +28,18 @@ public class Board {
                         if (j == amountOfPlayers || j == 10 + amountOfPlayers) {
                             for (BoardFields boardFields : list) {
                                 if (boardFields.ComparePosition(i , j )) {
-                                    board[i][j] = boardFields.shortName;
+                                    board[i][j] = boardFields.getShortName();
                                 }
                             }
                         }
                     }
-                 for(int l=0;l<playerArray.array.size();l++){
-                     if(playerArray.array.get(l).position[0] == i && playerArray.array.get(l).position[1] == j){
-                         board[i][j] = Character.forDigit(playerArray.array.get(l).ID,10);
-                     }
-                 }
-                }
 
+                }
+                for(int l=0;l<playerArray.GetSize();l++){
+                    if(playerArray.GetX(l) == i && playerArray.GetY(l) == j){
+                        board[i][j] = Character.forDigit(playerArray.GetID(l),10);
+                    }
+                }
 
             }
         }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ArrayBoardFields {
-     ArrayList<BoardFields> arrayList = new ArrayList<BoardFields>();
+     private ArrayList<BoardFields> arrayList = new ArrayList<BoardFields>();
      public ArrayBoardFields(int amountOfPlayers) throws FileNotFoundException {
          Scanner in = new Scanner(new File("src/main/java/sk/stuba/fei/uim/oop/FieldData.txt"));
          List<String[]> lines = new ArrayList<>();
@@ -37,4 +37,8 @@ public class ArrayBoardFields {
 
 
          }
-     }
+
+    public ArrayList<BoardFields> getArrayList() {
+        return arrayList;
+    }
+}
