@@ -21,7 +21,8 @@ public class StartGame {
                 System.out.print("You entered wrong number. Please try again \n");
             }
         }
-
+        ArrayBankCards bankCards = new ArrayBankCards();
+        ArrayChanceCards chanceCards = new ArrayChanceCards();
         PlayerArray playerArray = new PlayerArray(amountOfPlayers);
         ArrayBoardFields fields = new ArrayBoardFields(amountOfPlayers);
         Board board = new Board(amountOfPlayers);
@@ -115,6 +116,9 @@ public class StartGame {
                                     playerArray.getArray().get(tmpField.getOwnerID()).IncreaseBalance(sumToPayForRent);
                                 }
                             }
+                        }
+                        else if(tmpField.getName().equals("Bank")){
+
                         }
                         count = 0;
 

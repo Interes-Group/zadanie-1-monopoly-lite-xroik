@@ -1,6 +1,6 @@
 0 FreeParking 0 0 parking 0 0 P 0
 1 Strand 220 90 blue 0 1 S 0
-2 Lucky 0 0 lucky 0 2 ? 0
+2 Chance 0 0 chance 0 2 ? 0
 3 FleetStreet 220 90 blue 0 3 S 0
 4 TrafalgarSquare 240 100 blue 0 4 S 0
 5 FenchruchStation 400 25 trains 0 5 T 0
@@ -14,7 +14,7 @@
 13 Bank 0 0 bank 3 10 $ 0
 14 BondStreet 400 150 orange 4 10 O 0
 15 LiverpoolStation 200 25 trains 5 10 T 0
-16 Lucky 0 0 lucky 6 10 ? 0
+16 Chance 0 0 chance 6 10 ? 0
 17 ParkLine 350 175 coral 7 10 C 0
 18 SuperTaxPay 0 100 Tax 8 10 € 0
 19 MayFair 400 200 coral 9 10 C 0
@@ -25,7 +25,7 @@
 24 IncomeTaxPay 0 200 Tax 10 6 € 0
 25 KingCrossStation 200 25 trains 10 5 T 0
 26 TheAngelIslington 100 30 green 10 4 G 0
-27 Lucky 0 0 lucky 10 3 ? 0
+27 Chance 0 0 chance 10 3 ? 0
 28 EustonRoad 100 30 green 10 2 G 0
 29 PentonevilleRoad 120 40 green 10 1 G 0
 30 Jail 0 0 jail 10 0 J 0
