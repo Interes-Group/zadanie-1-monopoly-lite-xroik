@@ -8,7 +8,7 @@
 7 CoventryStreet 260 110 brown 0 7 B 0
 8 WaterSupplyCompany 150 0 utility 0 8 U 0
 9 Piccadilly 280 120 brown 0 9 B 0
-10 GoToJail 0 0 jail 0 10 J 0
+10 Police 0 0 police 0 10 J 0
 11 RegentStreet 300 130 orange 1 10 O 0
 12 OxfordStreet 300 130 orange 2 10 O 0
 13 Bank 0 0 bank 3 10 $ 0
@@ -28,7 +28,7 @@
 27 Chance 0 0 chance 10 3 ? 0
 28 EustonRoad 100 30 green 10 2 G 0
 29 PentonevilleRoad 120 40 green 10 1 G 0
-30 Jail 0 0 jail 10 0 J 0
+30 Jail 0 0 jail 10 0 # 0
 31 PallMall 140 50 orchid 9 0 F 0
 32 PowerSupplyCompany 150 0 utility 8 0 U 0
 33 WhiteHall 150 50 purple 7 0 F 0

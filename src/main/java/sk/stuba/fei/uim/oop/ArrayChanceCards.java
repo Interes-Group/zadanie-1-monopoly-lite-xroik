@@ -31,8 +31,23 @@ public class ArrayChanceCards {
                     Integer.parseInt(result[i][5])));
         }
 
+    }
+    public ArrayList<ChanceCards> getArrayList(){
+        return arrayList;
+    }
+    public boolean CheckForAvailabilty(){
+        boolean available = false;
+        for(ChanceCards card : arrayList){
+            if(!card.getUsed()){
+                available = true;
+            }
+        }
+        return available;
+    }
 
-
-
+    public void MakeAllAvailable() {
+        for(ChanceCards card:arrayList){
+            card.used = false;
+        }
     }
 }

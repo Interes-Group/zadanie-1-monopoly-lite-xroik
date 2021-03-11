@@ -8,7 +8,7 @@ public class BoardFields {
     private int[] position = new int[2];
     private char shortName;
     private int ownerID;
-    private int startintRent;
+    private int startingRent;
     public BoardFields(){
         this.name = "";
         this.ID = 0;
@@ -19,7 +19,7 @@ public class BoardFields {
         this.shortName = ' ';
         this.ownerID = 0;
     }
-    public BoardFields(int ID, String name, int price, int startintRent, String group, int x, int y, char shortName,int ownerID){
+    public BoardFields(int ID, String name, int price, int startingRent, String group, int x, int y, char shortName, int ownerID){
         this.ID = ID;
         this.name = name;
         this.price = price;
@@ -28,7 +28,7 @@ public class BoardFields {
         this.position[1] = y;
         this.shortName = shortName;
         this.ownerID = ownerID;
-        this.startintRent = startintRent;
+        this.startingRent = startingRent;
     }
 
     public char getShortName() {
@@ -88,7 +88,7 @@ public class BoardFields {
         return ownerID;
     }
 
-    public int getStartintRent() {
-        return startintRent;
+    public int getStartingRent() {
+        return startingRent;
     }
 }

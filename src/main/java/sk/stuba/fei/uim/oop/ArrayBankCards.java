@@ -29,14 +29,23 @@ public class ArrayBankCards {
                     Integer.parseInt(result[i][2]),
                     Boolean.parseBoolean(result[i][3])));
         }
-
-
-
-
     }
 
     public ArrayList<BankCards> getArrayList() {
         return arrayList;
     }
-
+    public boolean CheckForAvailability() {
+        boolean available = false;
+        for (BankCards card : arrayList) {
+            if (!card.used) {
+                available = true;
+            }
+        }
+        return available;
+    }
+    public void MakeAllAvailable(){
+        for(BankCards card:arrayList){
+            card.used = false;
+        }
+    }
 }

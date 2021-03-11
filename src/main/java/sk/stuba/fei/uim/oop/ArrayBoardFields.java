@@ -2,6 +2,7 @@ package sk.stuba.fei.uim.oop;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,8 +19,6 @@ public class ArrayBoardFields {
 
              lines.add(splitted);
          }
-
-//pretty much done, now convert List<String[]> to String[][]
          String[][] result = new String[lines.size()][];
          for(int i = 0; i<result.length; i++) {
              result[i] = lines.get(i);
@@ -53,5 +52,12 @@ public class ArrayBoardFields {
             }
         }
         return result;
+    }
+    public void ReturnFieldsAfterPlayerLost(Player player){
+        for(BoardFields field: arrayList){
+            if(field.getOwnerID() == player.getID()){
+                field.setOwnerID(0);
+            }
+        }
     }
 }

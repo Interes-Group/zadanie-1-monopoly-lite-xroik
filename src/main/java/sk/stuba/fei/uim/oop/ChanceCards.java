@@ -12,4 +12,16 @@ public class ChanceCards extends Cards{
         this.positionToMove[1] = y;
         this.amountToGet = amountToGet;
     }
+
+    public String getGroup() {
+        return group;
+    }
+
+
+    public int getAmountToGet() {
+        return amountToGet;
+    }
+    public int[] getPositionToMove(){
+        return this.positionToMove;
+    }
 }

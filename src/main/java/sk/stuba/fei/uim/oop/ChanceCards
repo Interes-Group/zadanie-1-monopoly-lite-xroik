@@ -4,6 +4,7 @@ Get150$Reward false reward 0 0 150
 Get200$Reward false reward 0 0 200
 Get250$Reward false reward 0 0 250
 Get300$Reward false reward 0 0 300
-MoveTo0/0 false move 0 0 0
-MoveTo10/7 false move 10 7 0
-MoveTo0/4 false move 0 4 0
+MoveTo1/1 false move 1 1 0
+MoveTo11/7 false move 11 7 0
+MoveTo5/11 false move 5 11 0
+MoveTo5/1 false move 5 1 0

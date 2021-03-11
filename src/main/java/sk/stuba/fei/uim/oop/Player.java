@@ -5,6 +5,7 @@ public class Player extends Dice {
     private int[] position = new int[2];
     private int ID;
     private int money;
+    private boolean isPrisoned;
 
     public Player(String name, int x, int y, int ID) {
         this.name = name;
@@ -12,6 +13,7 @@ public class Player extends Dice {
         this.position[1] = y;
         this.ID = ID;
         this.money = 2000;
+        isPrisoned = false;
     }
 
     public int[] getPosition() {
@@ -94,5 +96,31 @@ public class Player extends Dice {
     }
     public void DecreaseBalance(int money){
         this.money -= money;
+    }
+    public void SetPosition(int[] xy,int amountOfPlayers){
+        this.position[0]= xy[0]+amountOfPlayers - 1 ;
+        this.position[1] =xy[1] + amountOfPlayers - 1;
+
+        if(this.position[0] == 10 + amountOfPlayers){ //bottom
+            this.position[0] += amountOfPlayers;
+        }
+        else if(this.position[0] == amountOfPlayers){// top
+            this.position[0] -= amountOfPlayers;
+        }
+        else if(this.position[1] == amountOfPlayers){//left
+            this.position[1] -= amountOfPlayers;
+        }
+        else if(this.position[1] == 10+amountOfPlayers){//right
+            this.position[1] += amountOfPlayers;
+        }
+
+    }
+
+    public boolean isPrisoned() {
+        return isPrisoned;
+    }
+
+    public void setPrisoned(boolean prisoned) {
+        isPrisoned = prisoned;
     }
 }
