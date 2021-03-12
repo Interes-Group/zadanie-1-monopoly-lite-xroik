@@ -1,7 +1,9 @@
 package sk.stuba.fei.uim.oop;
-// todo utility companies
 // todo cancel rent for prisoned player
 // todo colored board
+// todo Change methods names
+// todo delete lost player from field
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,6 +87,7 @@ public class StartGame {
                             System.out.print("\n" + player.getName() + " rolled " + move + " \n");
                             tmpField = fields.getArrayList().get(fields.GetIDByLocation(location));
                             System.out.print(player.getName() + " now located at " + tmpField.getName() + "\n");
+
                             if (!tmpField.getName().equals("FreeParking") && !tmpField.getName().equals("Bank") && !tmpField.getName().equals("Chance") && !tmpField.getName().equals("Police") && !tmpField.getName().equals("Start") && !tmpField.getName().equals("Jail") && !tmpField.getGroup().equals("Tax")) { // all fields other than that
                                 if (tmpField.getOwnerID() == 0) {
                                     System.out.print(tmpField.getName() + " is available to buy.\nThis location is related to " + tmpField.getGroup() + '\n');
@@ -120,7 +123,17 @@ public class StartGame {
                                             count++;
                                         }
                                     }
-                                    sumToPayForRent = count * tmpField.getStartingRent();
+                                    if(tmpField.getGroup().equals("utility")){
+                                        if(count == 1){
+                                            sumToPayForRent = 4 * (player.getFirstRoll()+player.getSecondRoll());
+                                        }
+                                        else{
+                                            sumToPayForRent = 10 * (player.getFirstRoll()+player.getSecondRoll());
+                                        }
+                                    }
+                                    else {
+                                        sumToPayForRent = count * tmpField.getStartingRent();
+                                    }
                                     System.out.print("This field is owned by " + playerArray.getArray().get(tmpField.getOwnerID() - 1).getName() + " You have to pay " + sumToPayForRent + " € rent \n");
                                     if (player.getMoney() < sumToPayForRent) {
                                         System.out.print(player.getName() + " you dont have enough money to pay rent. You lost");
@@ -132,7 +145,8 @@ public class StartGame {
                                         playerArray.getArray().get(tmpField.getOwnerID() - 1).IncreaseBalance(sumToPayForRent);
                                     }
                                 }
-                            } else if (tmpField.getName().equals("Bank")) {
+                            }
+                            else if (tmpField.getName().equals("Bank")) {
                                 System.out.print(player.getName() + " located at bank field\n");
                                 if (!bankCards.CheckForAvailability()) {
                                     bankCards.MakeAllAvailable();
@@ -170,7 +184,7 @@ public class StartGame {
                                         if (card.getGroup().equals("reward")) {
                                             player.IncreaseBalance(card.getAmountToGet());
                                         } else if (card.getGroup().equals("move")) {
-                                            player.SetPosition(card.getPositionToMove(), amountOfPlayers);
+                                            player.SetPosition(card.getPositionToMove(), amountOfPlayers,player.getID());
                                             board.SetupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
                                             board.PrintBoard();
                                         }
@@ -179,7 +193,7 @@ public class StartGame {
 
                                     }
                                 }
-                            } else if (tmpField.getName().equals("Police")) { //todo
+                            } else if (tmpField.getName().equals("Police")) {
                                 System.out.print(player.getName() + " got caught by the Police. You have to go to the Jail.\n");
                                 if (player.getMoney() >= 150) {
                                     System.out.print("\nOr you can bribe them for 150$\n");
@@ -187,14 +201,15 @@ public class StartGame {
                                     command = in.next().charAt(0);
                                     if (command == 'Y' || command == 'y') {
                                         player.DecreaseBalance(150);
+                                        break;
                                     }
                                 }
                                 System.out.print(player.getName() + " is prisoned. " + player.getName() + "  will skip his next turn\n"); // add free rent for anyone else if player is prisoned
                                 player.setPrisoned(true);
-                                player.SetPosition(new int[]{10, 1},amountOfPlayers);
-                            } else if (tmpField.getName().equals("Start")) { //todo
+                                player.SetPosition(new int[]{10, 1},amountOfPlayers,player.getID());
+                            } else if (tmpField.getName().equals("Start")) {
                                 System.out.print(player.getName() + " visited Start field. Nothing happens\n");
-                            } else if (tmpField.getGroup().equals("Tax")) {//todo
+                            } else if (tmpField.getGroup().equals("Tax")) {
                                 System.out.print(player.getName() + " have to pay " + tmpField.getStartingRent() + "$\n");
                                 if(player.getMoney() >= tmpField.getStartingRent()){
                                     player.DecreaseBalance(tmpField.getStartingRent());
@@ -204,7 +219,7 @@ public class StartGame {
                                     fields.ReturnFieldsAfterPlayerLost(player);
                                     arrayOfLostPlayers.add(player.getID());
                                 }
-                            } else if (tmpField.getName().equals("Jail")) {//todo
+                            } else if (tmpField.getName().equals("Jail")) {
                                 System.out.print(player.getName() + " visited Jail. But you arent arrested, so nothing happens\n");
                             } else if (tmpField.getName().equals("FreeParking")) { //todo
                                 System.out.print(player.getName() + " visited Free Parking. You dont have to pay any rent\n");

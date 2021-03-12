@@ -97,21 +97,21 @@ public class Player extends Dice {
     public void DecreaseBalance(int money){
         this.money -= money;
     }
-    public void SetPosition(int[] xy,int amountOfPlayers){
+    public void SetPosition(int[] xy,int amountOfPlayers, int ID){
         this.position[0]= xy[0]+amountOfPlayers - 1 ;
         this.position[1] =xy[1] + amountOfPlayers - 1;
 
         if(this.position[0] == 10 + amountOfPlayers){ //bottom
-            this.position[0] += amountOfPlayers;
+            this.position[0] += ID;
         }
         else if(this.position[0] == amountOfPlayers){// top
-            this.position[0] -= amountOfPlayers;
+            this.position[0] -= ID;
         }
         else if(this.position[1] == amountOfPlayers){//left
-            this.position[1] -= amountOfPlayers;
+            this.position[1] -= ID;
         }
         else if(this.position[1] == 10+amountOfPlayers){//right
-            this.position[1] += amountOfPlayers;
+            this.position[1] += ID;
         }
 
     }
