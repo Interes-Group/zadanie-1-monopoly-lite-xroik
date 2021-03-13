@@ -3,20 +3,19 @@ package sk.stuba.fei.uim.oop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class ArrayBankCards implements ArrayCards {
-    private ArrayList<BankCards> arrayList = new ArrayList<BankCards>();
+    private final ArrayList<BankCards> arrayList = new ArrayList<>();
     public ArrayBankCards() throws FileNotFoundException {
         Scanner in = new Scanner(new File("src/main/java/sk/stuba/fei/uim/oop/BankCardsData.txt"));
         List<String[]> lines = new ArrayList<>();
         while(in.hasNextLine()) {
             String line = in.nextLine().trim();
-            String[] splitted = line.split(" ");
+            String[] split = line.split(" ");
 
-            lines.add(splitted);
+            lines.add(split);
         }
 
         String[][] result = new String[lines.size()][];
@@ -35,18 +34,18 @@ public class ArrayBankCards implements ArrayCards {
         return arrayList;
     }
     @Override
-    public boolean CheckForAvailability() {
+    public boolean checkForAvailability() {
         boolean available = false;
         for (BankCards card : arrayList) {
-            if (!card.getUsed()) {
+            if (card.getUsed()) {
                 available = true;
                 break;
             }
         }
-        return available;
+        return !available;
     }
     @Override
-    public void MakeAllAvailable(){
+    public void makeAllAvailable(){
         for(BankCards card:arrayList){
             card.used = false;
         }

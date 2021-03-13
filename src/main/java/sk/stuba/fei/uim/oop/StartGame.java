@@ -1,6 +1,5 @@
 package sk.stuba.fei.uim.oop;
-// todo Change methods names
-// todo Increase Money at Start Field
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,50 +39,49 @@ public class StartGame {
         PlayerArray playerArray = new PlayerArray(amountOfPlayers);
         ArrayBoardFields fields = new ArrayBoardFields(amountOfPlayers);
         Board board = new Board(amountOfPlayers);
-        board.SetupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
-        board.PrintBoard(playerArray, fields);
-        int move;
+        board.setupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
+        board.printBoard(playerArray, fields);
+        int move; // distance to move
         char command;
         BoardFields tmpField;
         int[] location;
-        int count = 0;
+        int count;
         int sumToPayForRent;
         int winner = 0;
-        boolean walkedThroughStart = false;
+        boolean walkedThroughStart;
         ArrayList<Integer> arrayOfLostPlayers = new ArrayList<>();
         while (true) {
-            if (winner != 0) break;
             for (Player player : playerArray.getArray()) {
                 do {
                     error = false;
                     count = 0;
-                    if (!player.isLost()) {
+                    if (player.isLost()) {
                         System.out.print(player.getName() + " press '1' to Roll Dices\n");
-                        System.out.print("Press '2' to check your current balance\n");
+                        //System.out.print("Press '2' to check your current balance\n");
                         command = in.next().charAt(0);
                         if (command == '1') {
                             if (player.isPrisoned()) {
                                 System.out.print(player.getName() + " got out from prison\n");
                                 player.setPrisoned(false);
                             } else {
-                                player.RollDice();
+                                player.rollDice();
                                 move = player.getFirstRoll() + player.getSecondRoll();
-                                walkedThroughStart = player.Move(move, amountOfPlayers);
-                                location = player.GetFieldLocation(amountOfPlayers);
-                                board.SetupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
-                                board.PrintBoard(playerArray, fields);
+                                walkedThroughStart = player.move(move, amountOfPlayers);
+                                location = player.getFieldLocation(amountOfPlayers);
+                                board.setupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
+                                board.printBoard(playerArray, fields);
                                 System.out.print("\n" + player.getName() + " rolled " + move + " \n");
                                 if (walkedThroughStart) {
                                     System.out.print(player.getName() + " walked through start. " + player.getName() + " earned 200$\n");
                                 }
-                                tmpField = fields.getArrayList().get(fields.GetIDByLocation(location));
+                                tmpField = fields.getArrayList().get(fields.getIDByLocation(location));
                                 System.out.print(player.getName() + " now located at " + tmpField.getName() + "\n");
 
                                 if (!tmpField.getName().equals("FreeParking") && !tmpField.getName().equals("Bank") && !tmpField.getName().equals("Chance") && !tmpField.getName().equals("Police") && !tmpField.getName().equals("Start") && !tmpField.getName().equals("Jail") && !tmpField.getGroup().equals("Tax")) { // all fields other than that
                                     if (tmpField.getOwnerID() == 0) {
                                         System.out.print(tmpField.getName() + " is available to buy.\nThis location is related to " + tmpField.getGroup() + '\n');
                                         for (BoardFields field : fields.getArrayList()) {
-                                            if (player.getID() == field.getOwnerID() && field.getGroup().equals(tmpField.getGroup())) {
+                                            if (player.getID() == field.getOwnerID() && field.getGroup().equals(tmpField.getGroup())) { // counting owned fields with the same type
                                                 count++;
                                             }
                                         }
@@ -96,8 +94,8 @@ public class StartGame {
                                             while (true) {
                                                 command = in.next().charAt(0);
                                                 if (command == 'Y' || command == 'y') {
-                                                    tmpField.setOwnerID(player.getID()); // IF DONT CHANGE OWNER CHANGE CODE TO fields.getArrayList().get(fields.GetIDByLocation(location))
-                                                    player.DecreaseBalance(tmpField.getPrice());
+                                                    tmpField.setOwnerID(player.getID()); // IF DONT CHANGE OWNER CHANGE CODE TO fields.getArrayList().get(fields.getIDByLocation(location))
+                                                    player.decreaseBalance(tmpField.getPrice());
                                                     break;
                                                 } else if (command == 'N' || command == 'n') {
                                                     break;
@@ -107,7 +105,7 @@ public class StartGame {
                                             }
                                         }
                                     } else if (tmpField.getOwnerID() == player.getID()) {
-                                        System.out.print("You already own this field. You dont have to pay rent for this field");
+                                        System.out.print("You already own this field. You dont have to pay rent for this field\n");
                                     } else {
                                         if (playerArray.getArray().get(tmpField.getOwnerID() - 1).isPrisoned()) {
                                             System.out.print("This field is owned by " + playerArray.getArray().get(tmpField.getOwnerID() - 1).getName() + " but he is in prison, so you dont have to pay any rent!\n");
@@ -129,35 +127,35 @@ public class StartGame {
                                         }
                                         System.out.print("This field is owned by " + playerArray.getArray().get(tmpField.getOwnerID() - 1).getName() + " You have to pay " + sumToPayForRent + " € rent \n");
                                         if (player.getMoney() < sumToPayForRent) {
-                                            System.out.print(player.getName() + " you dont have enough money to pay rent. You lost");
-                                            playerArray.getArray().get(tmpField.getOwnerID() - 1).IncreaseBalance(player.getMoney());
-                                            fields.ReturnFieldsAfterPlayerLost(player);
+                                            System.out.print(player.getName() + " you dont have enough money to pay rent. You lost\n");
+                                            playerArray.getArray().get(tmpField.getOwnerID() - 1).increaseBalance(player.getMoney());
+                                            fields.returnFieldsAfterPlayerLost(player);
                                             arrayOfLostPlayers.add(player.getID());
                                             player.setLost(true);
                                         } else {
-                                            player.DecreaseBalance(sumToPayForRent);
-                                            playerArray.getArray().get(tmpField.getOwnerID() - 1).IncreaseBalance(sumToPayForRent);
+                                            player.decreaseBalance(sumToPayForRent);
+                                            playerArray.getArray().get(tmpField.getOwnerID() - 1).increaseBalance(sumToPayForRent);
                                         }
                                     }
                                 } else if (tmpField.getName().equals("Bank")) {
                                     System.out.print(player.getName() + " located at bank field\n");
-                                    if (!bankCards.CheckForAvailability()) {
-                                        bankCards.MakeAllAvailable();
+                                    if (bankCards.checkForAvailability()) {
+                                        bankCards.makeAllAvailable();
                                         Collections.shuffle(bankCards.getArrayList());
                                     }
                                     for (BankCards card : bankCards.getArrayList()) {
-                                        if (!card.getUsed()) {
+                                        if (card.getUsed()) {
                                             System.out.print("Your bank card action is: " + card.getName() + '\n');
                                             if (!card.isPay()) {
                                                 System.out.print("You received " + card.getMoney() + "$\n");
-                                                player.IncreaseBalance(card.getMoney());
+                                                player.increaseBalance(card.getMoney());
                                             } else {
                                                 System.out.print("You have to pay " + card.getMoney() + "$\n");
                                                 if (player.getMoney() >= card.getMoney()) {
-                                                    player.DecreaseBalance(card.getMoney());
+                                                    player.decreaseBalance(card.getMoney());
                                                 } else {
-                                                    System.out.print("You dont have enough money to pay. You lost");
-                                                    fields.ReturnFieldsAfterPlayerLost(player);
+                                                    System.out.print("You dont have enough money to pay. You lost\n");
+                                                    fields.returnFieldsAfterPlayerLost(player);
                                                     arrayOfLostPlayers.add(player.getID());
                                                     player.setLost(true);
                                                 }
@@ -167,20 +165,20 @@ public class StartGame {
                                         }
                                     }
                                 } else if (tmpField.getName().equals("Chance")) {
-                                    if (!chanceCards.CheckForAvailabilty()) {
-                                        chanceCards.MakeAllAvailable();
+                                    if (chanceCards.checkForAvailability()) {
+                                        chanceCards.makeAllAvailable();
                                         Collections.shuffle(chanceCards.getArrayList());  // to do chance cards
                                     }
 
                                     for (ChanceCards card : chanceCards.getArrayList()) {
-                                        if (!card.getUsed()) {
-                                            System.out.print("Your chance card is : " + card.getName());
+                                        if (card.getUsed()) {
+                                            System.out.print("Your chance card is : " + card.getName()+'\n');
                                             if (card.getGroup().equals("reward")) {
-                                                player.IncreaseBalance(card.getAmountToGet());
+                                                player.increaseBalance(card.getAmountToGet());
                                             } else if (card.getGroup().equals("move")) {
-                                                player.SetPosition(card.getPositionToMove(), amountOfPlayers, player.getID());
-                                                board.SetupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
-                                                board.PrintBoard(playerArray, fields);
+                                                player.setPosition(card.getPositionToMove(), amountOfPlayers, player.getID());
+                                                board.setupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
+                                                board.printBoard(playerArray, fields);
                                             }
                                             card.setUsed(true);
                                             break;
@@ -194,22 +192,22 @@ public class StartGame {
                                         System.out.print("Do you want to bribe? Press Y/y or N/n\n");
                                         command = in.next().charAt(0);
                                         if (command == 'Y' || command == 'y') {
-                                            player.DecreaseBalance(150);
+                                            player.decreaseBalance(150);
                                             break;
                                         }
                                     }
                                     System.out.print(player.getName() + " is prisoned. " + player.getName() + "  will skip his next turn\n"); // add free rent for anyone else if player is prisoned
                                     player.setPrisoned(true);
-                                    player.SetPosition(new int[]{11, 1}, amountOfPlayers, player.getID());
+                                    player.setPosition(new int[]{11, 1}, amountOfPlayers, player.getID());
                                 } else if (tmpField.getName().equals("Start")) {
                                     System.out.print(player.getName() + " visited Start field. Nothing happens\n");
                                 } else if (tmpField.getGroup().equals("Tax")) {
                                     System.out.print(player.getName() + " have to pay " + tmpField.getStartingRent() + "$\n");
                                     if (player.getMoney() >= tmpField.getStartingRent()) {
-                                        player.DecreaseBalance(tmpField.getStartingRent());
+                                        player.decreaseBalance(tmpField.getStartingRent());
                                     } else {
                                         System.out.print("You dont have enough money to pay. You lost\n");
-                                        fields.ReturnFieldsAfterPlayerLost(player);
+                                        fields.returnFieldsAfterPlayerLost(player);
                                         arrayOfLostPlayers.add(player.getID());
                                         player.setLost(true);
                                     }
@@ -221,17 +219,15 @@ public class StartGame {
 
 
                             }
-                        }
-                        else if(command == '2'){
-                            System.out.print(player.getName() + " your balance is " + player.getMoney() + "$\n");
-                            error = true;
-                        }
-                        else {
+                        //} else if (command == '2') {
+                          //  System.out.print(player.getName() + " your balance is " + player.getMoney() + "$\n");
+                            //error = true;
+                        } else {
                             System.out.print("Command not found. Try again\n");
                             error = true;
                         }
                     }
-                    if (arrayOfLostPlayers.size() + 1 == playerArray.GetSize()) {
+                    if (arrayOfLostPlayers.size() + 1 == playerArray.getSize()) {
                         for (Player player2 : playerArray.getArray()) {
                             if (!arrayOfLostPlayers.contains(player2.getID())) {
                                 winner = player2.getID();
@@ -240,7 +236,7 @@ public class StartGame {
                     }
                     if (winner != 0) {
                         System.out.print("\n\n" + playerArray.getArray().get(winner - 1).getName() + " wins. Game ended");
-                        break;
+                        System.exit(0);
                     }
                 } while (error);
 

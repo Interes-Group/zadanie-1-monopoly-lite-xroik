@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PlayerArray {
-    private ArrayList<Player> array;
+    private final ArrayList<Player> array;
 
     {
         array = new ArrayList<>();
@@ -18,16 +18,16 @@ public class PlayerArray {
             array.add(new Player(name,10+i+amountOfPlayers,10+amountOfPlayers,i));
         }
     }
-    public int GetSize(){
+    public int getSize(){
         return array.size();
     }
-    public int GetX(int number){
+    public int getX(int number){
         return array.get(number).getPosition()[0];
     }
-    public int GetY(int number){
+    public int getY(int number){
         return array.get(number).getPosition()[1];
     }
-    public int GetID(int number){
+    public int getID(int number){
         return array.get(number).getID();
     }
 
