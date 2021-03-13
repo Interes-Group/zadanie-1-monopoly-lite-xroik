@@ -1,4 +1,4 @@
-// main class with all logic
+// main class with all logic!
 package sk.stuba.fei.uim.oop;
 
 
