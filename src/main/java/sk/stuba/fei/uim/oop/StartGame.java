@@ -1,10 +1,6 @@
 package sk.stuba.fei.uim.oop;
-// todo cancel rent for prisoned player (Done, need to test)
-// todo colored board (Done)
 // todo Change methods names
-// todo delete lost player from field
-// todo Try To Implement Player attribute isLost, and delete arrayOfLostPlayers
-
+// todo Increase Money at Start Field
 
 import java.io.IOException;
 import java.util.ArrayList;

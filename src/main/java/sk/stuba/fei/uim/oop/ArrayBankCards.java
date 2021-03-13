@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ArrayBankCards {
+public class ArrayBankCards implements ArrayCards {
     private ArrayList<BankCards> arrayList = new ArrayList<BankCards>();
     public ArrayBankCards() throws FileNotFoundException {
         Scanner in = new Scanner(new File("src/main/java/sk/stuba/fei/uim/oop/BankCardsData.txt"));
@@ -34,15 +34,18 @@ public class ArrayBankCards {
     public ArrayList<BankCards> getArrayList() {
         return arrayList;
     }
+    @Override
     public boolean CheckForAvailability() {
         boolean available = false;
         for (BankCards card : arrayList) {
-            if (!card.used) {
+            if (!card.getUsed()) {
                 available = true;
+                break;
             }
         }
         return available;
     }
+    @Override
     public void MakeAllAvailable(){
         for(BankCards card:arrayList){
             card.used = false;
