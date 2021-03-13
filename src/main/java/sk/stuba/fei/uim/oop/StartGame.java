@@ -58,11 +58,12 @@ public class StartGame {
                     error = false;
                     count = 0;
                     if (!player.isLost()) {
-                        System.out.print('\n' + player.getName() + " press '1' to Roll Dices\n");
+                        System.out.print(player.getName() + " press '1' to Roll Dices\n");
+                        System.out.print("Press '2' to check your current balance\n");
                         command = in.next().charAt(0);
                         if (command == '1') {
                             if (player.isPrisoned()) {
-                                System.out.print(player.getName() + " got out from prison");
+                                System.out.print(player.getName() + " got out from prison\n");
                                 player.setPrisoned(false);
                             } else {
                                 player.RollDice();
@@ -220,7 +221,12 @@ public class StartGame {
 
 
                             }
-                        } else {
+                        }
+                        else if(command == '2'){
+                            System.out.print(player.getName() + " your balance is " + player.getMoney() + "$\n");
+                            error = true;
+                        }
+                        else {
                             System.out.print("Command not found. Try again\n");
                             error = true;
                         }
