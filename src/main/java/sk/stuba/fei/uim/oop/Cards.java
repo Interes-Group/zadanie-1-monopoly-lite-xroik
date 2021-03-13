@@ -8,7 +8,7 @@ public class Cards {
         return name;
     }
     public boolean getUsed(){
-        return used;
+        return !used;
     }
     public void setUsed(boolean used){
         this.used = used;

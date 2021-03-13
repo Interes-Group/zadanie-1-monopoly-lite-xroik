@@ -1,9 +1,9 @@
 package sk.stuba.fei.uim.oop;
 
 public class Player extends Dice {
-    private String name;
-    private int[] position = new int[2];
-    private int ID;
+    private final String name;
+    private final int[] position = new int[2];
+    private final int ID;
     private int money;
     private boolean isPrisoned;
     private boolean isLost;
@@ -14,7 +14,7 @@ public class Player extends Dice {
         this.position[0] = x;
         this.position[1] = y;
         this.ID = ID;
-        this.money = 500;
+        this.money = 300;
         this.isPrisoned = false;
     }
 
@@ -26,7 +26,7 @@ public class Player extends Dice {
         return ID;
     }
 
-    public boolean Move(int move, int amountOfPlayers) {
+    public boolean move(int move, int amountOfPlayers) {
         boolean walkedThroughStart = false;
         for (int i = 1; i <= move; i++) {
             if (position[0] > 10 + amountOfPlayers && position[1]<= 10+amountOfPlayers) { //bottom side of map
@@ -72,7 +72,7 @@ public class Player extends Dice {
     public String getName() {
         return name;
     }
-    public int[] GetFieldLocation(int amountOfPlayers){
+    public int[] getFieldLocation(int amountOfPlayers){
         int[] location = new int[2];
         if (position[0] > 10 + amountOfPlayers && position[1]<= 10+amountOfPlayers){ //bottom side
             location[0] = position[0] - ID;
@@ -96,13 +96,13 @@ public class Player extends Dice {
     public int getMoney() {
         return money;
     }
-    public void IncreaseBalance(int money) {
+    public void increaseBalance(int money) {
         this.money += money;
     }
-    public void DecreaseBalance(int money){
+    public void decreaseBalance(int money){
         this.money -= money;
     }
-    public void SetPosition(int[] xy,int amountOfPlayers, int ID){
+    public void setPosition(int[] xy, int amountOfPlayers, int ID){
         this.position[0]= xy[0]+amountOfPlayers - 1 ;
         this.position[1] =xy[1] + amountOfPlayers - 1;
 
@@ -130,7 +130,7 @@ public class Player extends Dice {
     }
 
     public boolean isLost() {
-        return isLost;
+        return !isLost;
     }
 
     public void setLost(boolean lost) {

@@ -9,7 +9,7 @@ public class Dice {
         firstRoll = 0;
         secondRoll = 0;
     }
-    public void RollDice(){
+    public void rollDice(){
         Random rand = new Random();
         firstRoll = 1 + rand.nextInt(6);
         secondRoll = 1 + rand.nextInt(6);

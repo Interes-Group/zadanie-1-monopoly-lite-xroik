@@ -1,24 +1,15 @@
 package sk.stuba.fei.uim.oop;
 
 public class BoardFields {
-    private int ID;
-    private String name;
-    private int price;
-    private String group;
-    private int[] position = new int[2];
-    private char shortName;
+    private final int ID;
+    private final String name;
+    private final int price;
+    private final String group;
+    private final int[] position = new int[2];
+    private final char shortName;
     private int ownerID;
-    private int startingRent;
-    public BoardFields(){
-        this.name = "";
-        this.ID = 0;
-        this.price = 0;
-        this.group = "";
-        this.position[0] = 0;
-        this.position[1] = 0;
-        this.shortName = ' ';
-        this.ownerID = 0;
-    }
+    private final int startingRent;
+
     public BoardFields(int ID, String name, int price, int startingRent, String group, int x, int y, char shortName, int ownerID){
         this.ID = ID;
         this.name = name;
@@ -35,28 +26,8 @@ public class BoardFields {
         return shortName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public void setPosition(int x, int y) {
-        this.position[0] = x;
-        this.position[1] = y;
-    }
     public int[] getPosition(){
         return this.position;
-    }
-
-    public void setShortName(char shortName) {
-        this.shortName = shortName;
     }
 
     public void setOwnerID(int ownerID) {
@@ -64,7 +35,7 @@ public class BoardFields {
     }
 
 
-    public boolean ComparePosition(int x, int y){
+    public boolean comparePosition(int x, int y){
         return x == position[0] && y == position[1];
     }
 

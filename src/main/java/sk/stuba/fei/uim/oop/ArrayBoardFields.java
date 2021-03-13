@@ -2,22 +2,21 @@ package sk.stuba.fei.uim.oop;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class ArrayBoardFields {
-     private ArrayList<BoardFields> arrayList = new ArrayList<BoardFields>();
+     private final ArrayList<BoardFields> arrayList = new ArrayList<>();
      public ArrayBoardFields(int amountOfPlayers) throws FileNotFoundException {
          Scanner in = new Scanner(new File("src/main/java/sk/stuba/fei/uim/oop/FieldData.txt"));
          List<String[]> lines = new ArrayList<>();
          while(in.hasNextLine()) {
              String line = in.nextLine().trim();
-             String[] splitted = line.split(" ");
+             String[] split = line.split(" ");
 
-             lines.add(splitted);
+             lines.add(split);
          }
          String[][] result = new String[lines.size()][];
          for(int i = 0; i<result.length; i++) {
@@ -43,7 +42,7 @@ public class ArrayBoardFields {
     public ArrayList<BoardFields> getArrayList() {
         return arrayList;
     }
-    public int GetIDByLocation(int[] location) {
+    public int getIDByLocation(int[] location) {
         int result = 0;
         for (BoardFields field : arrayList) {
             if (Arrays.equals(field.getPosition(),location)){
@@ -53,7 +52,7 @@ public class ArrayBoardFields {
         }
         return result;
     }
-    public void ReturnFieldsAfterPlayerLost(Player player){
+    public void returnFieldsAfterPlayerLost(Player player){
         for(BoardFields field: arrayList){
             if(field.getOwnerID() == player.getID()){
                 field.setOwnerID(0);

@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ArrayChanceCards {
-    private ArrayList<ChanceCards> arrayList = new ArrayList<ChanceCards>();
+public class ArrayChanceCards implements ArrayCards{
+    private final ArrayList<ChanceCards> arrayList = new ArrayList<>();
     public ArrayChanceCards() throws FileNotFoundException {
         Scanner in = new Scanner(new File("src/main/java/sk/stuba/fei/uim/oop/ChanceCards"));
         List<String[]> lines = new ArrayList<>();
         while(in.hasNextLine()) {
             String line = in.nextLine().trim();
-            String[] splitted = line.split(" ");
+            String[] split = line.split(" ");
 
-            lines.add(splitted);
+            lines.add(split);
         }
 
         String[][] result = new String[lines.size()][];
@@ -35,17 +35,20 @@ public class ArrayChanceCards {
     public ArrayList<ChanceCards> getArrayList(){
         return arrayList;
     }
-    public boolean CheckForAvailabilty(){
+    @Override
+    public boolean checkForAvailability(){
         boolean available = false;
         for(ChanceCards card : arrayList){
-            if(!card.getUsed()){
+            if (card.getUsed()) {
                 available = true;
+                break;
             }
         }
-        return available;
+        return !available;
     }
 
-    public void MakeAllAvailable() {
+    @Override
+    public void makeAllAvailable() {
         for(ChanceCards card:arrayList){
             card.used = false;
         }
