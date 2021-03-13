@@ -1,8 +1,9 @@
 package sk.stuba.fei.uim.oop;
-// todo cancel rent for prisoned player
-// todo colored board
+// todo cancel rent for prisoned player (Done, need to test)
+// todo colored board (Done)
 // todo Change methods names
 // todo delete lost player from field
+// todo Try To Implement Player attribute isLost, and delete arrayOfLostPlayers
 
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class StartGame {
         ArrayBoardFields fields = new ArrayBoardFields(amountOfPlayers);
         Board board = new Board(amountOfPlayers);
         board.SetupBoard(fields.getArrayList(),amountOfPlayers,playerArray);
-        board.PrintBoard();
+        board.PrintBoard(playerArray,fields);
         int move;
         char command;
         BoardFields tmpField;
@@ -83,7 +84,7 @@ public class StartGame {
                             player.Move(move, amountOfPlayers);
                             location = player.GetFieldLocation(amountOfPlayers);
                             board.SetupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
-                            board.PrintBoard();
+                            board.PrintBoard(playerArray,fields);
                             System.out.print("\n" + player.getName() + " rolled " + move + " \n");
                             tmpField = fields.getArrayList().get(fields.GetIDByLocation(location));
                             System.out.print(player.getName() + " now located at " + tmpField.getName() + "\n");
@@ -118,6 +119,10 @@ public class StartGame {
                                 } else if (tmpField.getOwnerID() == player.getID()) {
                                     System.out.print("You already own this field. You dont have to pay rent for this field");
                                 } else {
+                                    if(playerArray.getArray().get(tmpField.getOwnerID()-1).isPrisoned()){
+                                        System.out.print("This field is owned by " + playerArray.getArray().get(tmpField.getOwnerID()-1).getName() + " but he is in prison, so you dont have to pay any rent!\n");
+                                        break;
+                                    }
                                     for (BoardFields field : fields.getArrayList()) {
                                         if (tmpField.getOwnerID() == field.getOwnerID() && field.getGroup().equals(tmpField.getGroup())) {
                                             count++;
@@ -186,7 +191,7 @@ public class StartGame {
                                         } else if (card.getGroup().equals("move")) {
                                             player.SetPosition(card.getPositionToMove(), amountOfPlayers,player.getID());
                                             board.SetupBoard(fields.getArrayList(), amountOfPlayers, playerArray);
-                                            board.PrintBoard();
+                                            board.PrintBoard(playerArray,fields);
                                         }
                                         card.setUsed(true);
                                         break;
