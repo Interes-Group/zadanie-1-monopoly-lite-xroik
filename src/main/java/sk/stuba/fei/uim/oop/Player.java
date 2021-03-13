@@ -26,7 +26,8 @@ public class Player extends Dice {
         return ID;
     }
 
-    public void Move(int move, int amountOfPlayers) {
+    public boolean Move(int move, int amountOfPlayers) {
+        boolean walkedThroughStart = false;
         for (int i = 1; i <= move; i++) {
             if (position[0] > 10 + amountOfPlayers && position[1]<= 10+amountOfPlayers) { //bottom side of map
                 if (position[1] == amountOfPlayers) { //bottom-left edge
@@ -54,8 +55,9 @@ public class Player extends Dice {
                     position[1]++;
                 }
             }
-            else if(position[1]>10+amountOfPlayers){
-                if(position[0] == 10 + amountOfPlayers){
+            else if(position[1]>10+amountOfPlayers){ // right
+                if(position[0] == 10 + amountOfPlayers){ // start position
+                    walkedThroughStart = true;
                     position[1] -= (ID+1);
                     position[0] += (ID);
                 }
@@ -64,6 +66,7 @@ public class Player extends Dice {
                 }
             }
         }
+        return walkedThroughStart;
     }
 
     public String getName() {
