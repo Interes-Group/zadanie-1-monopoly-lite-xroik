@@ -1,5 +1,5 @@
 package sk.stuba.fei.uim.oop;
-
+//11
 import java.util.Random;
 
 public class Dice {

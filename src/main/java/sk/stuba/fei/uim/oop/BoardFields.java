@@ -1,5 +1,5 @@
 package sk.stuba.fei.uim.oop;
-
+//8
 public class BoardFields {
     private final int ID;
     private final String name;

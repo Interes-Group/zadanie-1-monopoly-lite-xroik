@@ -1,5 +1,5 @@
 package sk.stuba.fei.uim.oop;
-
+//7
 import java.util.ArrayList;
 import java.util.Arrays;
 

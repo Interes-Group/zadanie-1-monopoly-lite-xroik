@@ -1,5 +1,5 @@
 package sk.stuba.fei.uim.oop;
-
+//12
 public class Player extends Dice {
     private final String name;
     private final int[] position = new int[2];

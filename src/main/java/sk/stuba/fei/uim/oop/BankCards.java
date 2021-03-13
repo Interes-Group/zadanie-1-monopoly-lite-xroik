@@ -1,5 +1,5 @@
 package sk.stuba.fei.uim.oop;
-
+//6
 public class BankCards extends Cards{
     private final int money;
     private final boolean pay; // true = pay, false = receive

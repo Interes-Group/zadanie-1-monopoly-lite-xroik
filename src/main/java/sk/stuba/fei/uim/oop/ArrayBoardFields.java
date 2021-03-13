@@ -1,5 +1,5 @@
 package sk.stuba.fei.uim.oop;
-
+//2
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

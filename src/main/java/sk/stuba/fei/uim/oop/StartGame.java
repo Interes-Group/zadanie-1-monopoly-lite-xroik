@@ -1,6 +1,6 @@
-// main class with all logic!
+// main class with all logic!1
 package sk.stuba.fei.uim.oop;
-
+//13
 
 import java.io.IOException;
 import java.util.ArrayList;

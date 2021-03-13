@@ -1,5 +1,5 @@
 package sk.stuba.fei.uim.oop;
-
+//9
 public class Cards {
     protected String name;
     protected boolean used;
