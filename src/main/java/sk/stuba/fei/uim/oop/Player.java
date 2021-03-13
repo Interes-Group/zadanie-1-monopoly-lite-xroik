@@ -6,14 +6,16 @@ public class Player extends Dice {
     private int ID;
     private int money;
     private boolean isPrisoned;
+    private boolean isLost;
 
     public Player(String name, int x, int y, int ID) {
         this.name = name;
+        this.isLost = false;
         this.position[0] = x;
         this.position[1] = y;
         this.ID = ID;
-        this.money = 2000;
-        isPrisoned = false;
+        this.money = 500;
+        this.isPrisoned = false;
     }
 
     public int[] getPosition() {
@@ -122,5 +124,13 @@ public class Player extends Dice {
 
     public void setPrisoned(boolean prisoned) {
         isPrisoned = prisoned;
+    }
+
+    public boolean isLost() {
+        return isLost;
+    }
+
+    public void setLost(boolean lost) {
+        isLost = lost;
     }
 }

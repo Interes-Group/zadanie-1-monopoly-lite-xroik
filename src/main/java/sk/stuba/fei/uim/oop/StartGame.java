@@ -47,31 +47,10 @@ public class StartGame {
         int winner = 0;
         ArrayList<Integer> arrayOfLostPlayers = new ArrayList<>();
         while(true){
-            if(arrayOfLostPlayers.size()+1 == playerArray.GetSize()){
-                for (Player player: playerArray.getArray()){
-                    if(!arrayOfLostPlayers.contains(player.getID())){
-                        winner = player.getID();
-                    }
-                }
-            }
-            if(winner != 0){
-                System.out.print("\n\n"+playerArray.getArray().get(winner-1).getName() +" wins. Game ended");
-                break;
-            }
+            if(winner!=0) break;
             for (Player player: playerArray.getArray()) {
-                label1:
-                while(true) {
-                    count = 0;
-                    for(Integer id : arrayOfLostPlayers){
-                        if(player.getID() == id){
-                            lost = true;
-                            break;
-                        }
-                    }
-                    if(lost){
-                        lost = false;
-                        break label1;
-                    }
+                count = 0;
+                if(!player.isLost()){
                     System.out.print('\n'+player.getName() + " press '1' to Roll Dices\n");
                     command = in.next().charAt(0);
                     if (command == '1') {
@@ -145,6 +124,7 @@ public class StartGame {
                                         playerArray.getArray().get(tmpField.getOwnerID() - 1).IncreaseBalance(player.getMoney());
                                         fields.ReturnFieldsAfterPlayerLost(player);
                                         arrayOfLostPlayers.add(player.getID());
+                                        player.setLost(true);
                                     } else {
                                         player.DecreaseBalance(sumToPayForRent);
                                         playerArray.getArray().get(tmpField.getOwnerID() - 1).IncreaseBalance(sumToPayForRent);
@@ -171,6 +151,7 @@ public class StartGame {
                                                 System.out.print("You dont have enough money to pay. You lost");
                                                 fields.ReturnFieldsAfterPlayerLost(player);
                                                 arrayOfLostPlayers.add(player.getID());
+                                                player.setLost(true);
                                             }
                                         }
                                         card.setUsed(true);
@@ -211,7 +192,7 @@ public class StartGame {
                                 }
                                 System.out.print(player.getName() + " is prisoned. " + player.getName() + "  will skip his next turn\n"); // add free rent for anyone else if player is prisoned
                                 player.setPrisoned(true);
-                                player.SetPosition(new int[]{10, 1},amountOfPlayers,player.getID());
+                                player.SetPosition(new int[]{11, 1},amountOfPlayers,player.getID());
                             } else if (tmpField.getName().equals("Start")) {
                                 System.out.print(player.getName() + " visited Start field. Nothing happens\n");
                             } else if (tmpField.getGroup().equals("Tax")) {
@@ -223,10 +204,11 @@ public class StartGame {
                                     System.out.print("You dont have enough money to pay. You lost\n");
                                     fields.ReturnFieldsAfterPlayerLost(player);
                                     arrayOfLostPlayers.add(player.getID());
+                                    player.setLost(true);
                                 }
                             } else if (tmpField.getName().equals("Jail")) {
                                 System.out.print(player.getName() + " visited Jail. But you arent arrested, so nothing happens\n");
-                            } else if (tmpField.getName().equals("FreeParking")) { //todo
+                            } else if (tmpField.getName().equals("FreeParking")) {
                                 System.out.print(player.getName() + " visited Free Parking. You dont have to pay any rent\n");
                             }
 
@@ -237,7 +219,17 @@ public class StartGame {
                         System.out.print("Command not found. Try again\n");
                         continue;
                     }
-                  break;
+                }
+                if(arrayOfLostPlayers.size()+1 == playerArray.GetSize()){
+                    for (Player player2: playerArray.getArray()){
+                        if(!arrayOfLostPlayers.contains(player2.getID())){
+                            winner = player2.getID();
+                        }
+                    }
+                }
+                if(winner != 0){
+                    System.out.print("\n\n"+playerArray.getArray().get(winner-1).getName() +" wins. Game ended");
+                    break;
                 }
             }
 
