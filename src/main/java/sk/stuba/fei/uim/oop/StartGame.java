@@ -22,7 +22,7 @@ public class StartGame {
                 try {
                     amountOfPlayers = in.nextInt();
                     error = false;
-                } catch (InputMismatchException e) {
+                } catch (InputMismatchException e) { // discord qna 17.03
                     System.out.print("Wrong input. Try again\n");
                     in.next();
                 }

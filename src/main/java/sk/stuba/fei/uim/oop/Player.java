@@ -14,7 +14,7 @@ public class Player extends Dice {
         this.position[0] = x;
         this.position[1] = y;
         this.ID = ID;
-        this.money = 300;
+        this.money = 2000;
         this.isPrisoned = false;
     }
 
