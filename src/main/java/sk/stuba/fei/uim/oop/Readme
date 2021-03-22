@@ -1,0 +1,41 @@
+*Short Class Description*
+StartGame.java -> class with all logic of program
+Player.java -> class that implements player objects
+PlayerArray.java -> class that have ArrayList of Player objects
+Dice.java -> class that implements random dice, extends Player class
+Board.java -> implementing 2D array for drawing board
+BoardField.java -> board consists of objects fields, that are implementing here
+ArrayBoardField.java -> class that implements ListArray of BoardField objects
+Cards.java -> class that implements base of Chance and Bank cards, extends ChanceCards.java and BankCards.java
+BankCards.java-> class that implements Bank Cards
+ChanceCards.java-> class that implements Chance Cards
+ArrayCards.java-> interface, that implements in ArrayBankCards and ArrayChanceCards
+ArrayBankCards.java-> class that implements ArrayList of BankCards object
+ArrayChanceCards.java -> class that implements ArrayList of ChanceCards object
+Assigment1.java -> main function
+
+FieldData.txt -> txt file with data about fields of playing board
+ChanceCard.txt -> txt file with data about Chance cards
+BankCardsData.txt -> txt file with data about Bank cards 
+
+
+
+*References:*
+Insipired by https://www.zahraj.sk/online-hra/monopoly-online/
+
+
+*Field shortcuts*
+P -> Free Parking
+? -> Chance Fields
+T -> Trains field
+J -> Field of Police (Go to Jail)
+# -> Jail Field
+$ -> Bank
+€ -> Tax Field
+<- Start field
+B -> Fields of 'Brown' group
+O -> Fields of 'Orange' group
+C -> Fields of 'Collar' group
+S -> Fields of 'Sky' group (Blue)
+P -> Fields of 'Purple' group
+G -> Fields of 'Green' group
